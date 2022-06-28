@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const [profileTab, setProfileTab] = useState(false);
@@ -91,30 +92,37 @@ export default function Header() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                    <span
+                    {/* <span
                       className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                       aria-current="page"
                     >
                       Dashboard
-                    </span>
-                    <a
-                      href="/"
+                    </span> */}
+
+                    <NavLink
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Home
+                    </NavLink>
+                    <NavLink
+                      to="/team"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Team
-                    </a>
-                    <a
-                      href="/"
+                    </NavLink>
+                    <NavLink
+                      to="/allplayers"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Players
-                    </a>
-                    <a
-                      href="/"
+                    </NavLink>
+                    <NavLink
+                      to="/about"
                       className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       About
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -157,41 +165,32 @@ export default function Header() {
                     aria-labelledby="user-menu-button"
                     tabIndex={-1}
                   >
-                    <a
-                      href="/"
+                    <NavLink
+                      to="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-0"
                     >
                       Your Profile
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="user-menu-item-1"
-                    >
-                      Settings
-                    </a>
-                    <a
-                      href="/"
+                    </NavLink>
+                    <NavLink
+                      to="/"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
                       role="menuitem"
                       tabIndex={-1}
                       id="user-menu-item-2"
                     >
                       Sign out
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
-                <a
-                  href="/"
+                <NavLink
+                  to="/login"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Login
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -203,31 +202,31 @@ export default function Header() {
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                 aria-current="page"
               >
                 Menu Options
-              </a>
-              <a
-                href="/"
+              </NavLink>
+              <NavLink
+                to="/team"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Team
-              </a>
-              <a
-                href="/"
+              </NavLink>
+              <NavLink
+                to="/allplayers"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 Players
-              </a>
-              <a
-                href="/"
+              </NavLink>
+              <NavLink
+                to="/about"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
               >
                 About
-              </a>
+              </NavLink>
             </div>
           </div>
         </nav>

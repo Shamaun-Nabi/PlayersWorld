@@ -8,6 +8,7 @@ import Login from "./CMP/Login/Login";
 import Notfound from "./CMP/Notfound/Notfound";
 import Players from "./CMP/Players/Players";
 import PlayersInfo from "./CMP/PlayersInfo/PlayersInfo";
+import Profile from "./CMP/Profile/Profile";
 import Register from "./CMP/Register/Register";
 import Team from "./CMP/Team/Team";
 function App() {
@@ -17,12 +18,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="allplayers" element={<AllPlayers />} />
-        <Route path="playersinfo" element={<PlayersInfo />} />
+        <Route path="players" element={<PlayersInfo />} />
         <Route path="players" element={<Players />} />
         <Route path="about" element={<About />} />
         <Route path="team" element={<Team />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
