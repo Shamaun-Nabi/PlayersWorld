@@ -101,25 +101,41 @@ export default function Header() {
 
                     <NavLink
                       to="/"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
                     >
                       Home
                     </NavLink>
                     <NavLink
                       to="/team"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
                     >
                       Team
                     </NavLink>
                     <NavLink
                       to="/allplayers"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
                     >
                       Players
                     </NavLink>
                     <NavLink
                       to="/about"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      className={({ isActive }) =>
+                        isActive
+                          ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                      }
                     >
                       About
                     </NavLink>
