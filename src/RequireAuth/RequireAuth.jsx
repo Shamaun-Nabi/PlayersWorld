@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Firebase/Firebase.init";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 
 export default function RequireAuth({ children }) {
   //   let auth = useAuth(auth);

@@ -7,7 +7,7 @@ import auth from "../../Firebase/Firebase.init";
 
 export default function Login() {
   const [user] = useAuthState(auth);
-  console.log(user);
+  // console.log(user);
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -17,16 +17,12 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
-      toast.success("Login SuccessFull")
+      toast.success("Login SuccessFull");
     }
   }, [user]);
 
   const googleHandeler = () => {
     signInWithGoogle();
-
- 
-    
-
   };
 
   return (

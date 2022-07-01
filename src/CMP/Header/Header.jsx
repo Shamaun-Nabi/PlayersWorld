@@ -1,9 +1,29 @@
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 import { NavLink } from "react-router-dom";
+import auth from "../../Firebase/Firebase.init";
+import logo from "../../assets/logo.png";
+import shortlogo from "../../assets/shortLogo.png";
 
 export default function Header() {
+  const [user, loading, error] = useAuthState(auth);
   const [profileTab, setProfileTab] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
+  // console.log(user.photoURL)
+
+  if (loading) {
+    return (
+      <>
+        <h3 className="text-center">Loading...</h3>
+      </>
+    );
+  }
+  if (error) {
+    console.log(error.message);
+  }
+  // console.log(user.photoURL);
 
   const profileHandeler = () => {
     setProfileTab(!profileTab);
@@ -11,6 +31,11 @@ export default function Header() {
 
   const mobileMenuHandeler = () => {
     setMobileMenu(!mobileMenu);
+  };
+
+  const signOutHandeler = () => {
+    signOut(auth);
+    toast.error("You Are logged out !");
   };
 
   return (
@@ -22,6 +47,7 @@ export default function Header() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
+                {/* <img src={user?.photoURL} alt="" /> */}
                 <button
                   type="button"
                   className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -80,17 +106,17 @@ export default function Header() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src={shortlogo}
                     alt="Workflow"
                   />
                   <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    className="hidden lg:block h-10 w-auto"
+                    src={logo}
                     alt="Workflow"
                   />
                 </div>
                 <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 items-center">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     {/* <span
                       className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -120,7 +146,7 @@ export default function Header() {
                       Team
                     </NavLink>
                     <NavLink
-                      to="/allplayers"
+                      to="/players"
                       className={({ isActive }) =>
                         isActive
                           ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -149,7 +175,11 @@ export default function Header() {
                     <button
                       onClick={profileHandeler}
                       type="button"
-                      className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                      className={
+                        user
+                          ? "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                          : "hidden"
+                      }
                       id="user-menu-button"
                       aria-expanded="false"
                       aria-haspopup="true"
@@ -157,8 +187,8 @@ export default function Header() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
+                        src={user ? user?.photoURL : ""}
+                        alt="userPhoto"
                       />
                     </button>
                   </div>
@@ -172,38 +202,47 @@ export default function Header() {
         From: "transform opacity-100 scale-100"
         To: "transform opacity-0 scale-95"
     */}
-                  <div
-                    className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${
-                      profileTab ? "block" : "hidden"
-                    }`}
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="user-menu-button"
-                    tabIndex={-1}
-                  >
-                    <NavLink
-                      to="/profile"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
-                      role="menuitem"
+                  {user && (
+                    <div
+                      className={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                        profileTab ? "block" : "hidden"
+                      }`}
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="user-menu-button"
                       tabIndex={-1}
-                      id="user-menu-item-0"
                     >
-                      Your Profile
-                    </NavLink>
-                    <NavLink
-                      to="/"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="user-menu-item-2"
-                    >
-                      Sign out
-                    </NavLink>
-                  </div>
+                      <div>
+                        <NavLink
+                          to="/profile"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
+                          role="menuitem"
+                          tabIndex={-1}
+                          id="user-menu-item-0"
+                        >
+                          {user?.displayName}
+                        </NavLink>
+                        <NavLink
+                          to="/"
+                          onClick={signOutHandeler}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-500 hover:text-white"
+                          role="menuitem"
+                          tabIndex={-1}
+                          id="user-menu-item-2"
+                        >
+                          Sign out
+                        </NavLink>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <NavLink
                   to="/login"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className={
+                    user
+                      ? "hidden"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  }
                 >
                   Login
                 </NavLink>
