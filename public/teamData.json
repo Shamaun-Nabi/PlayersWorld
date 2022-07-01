@@ -2,66 +2,69 @@
   {
     "Team_Id": "1",
     "Team_Name": "Kolkata Knight Riders",
-    "Team_Short_Code": "KKR"
+    "Team_Short_Code": "KKR",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/KKR/Logos/Roundbig/KKRroundbig.png",
+    "Winning_year":"2012, 2014",
+    "Stadium":"Eden Garden"
   },
   {
     "Team_Id": "2",
     "Team_Name": "Royal Challengers Bangalore",
-    "Team_Short_Code": "RCB"
+    "Team_Short_Code": "RCB",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RCB/Logos/Roundbig/RCBroundbig.png",
+    "Winning_year":false,
+    "Stadium":"M.Chinnaswami Stadium",
+    "bgColor":"bg-gradient-to-t from-cyan-700 to-blue-500"
   },
-  {
+  { 
     "Team_Id": "3",
     "Team_Name": "Chennai Super Kings",
-    "Team_Short_Code": "CSK"
+    "Team_Short_Code": "CSK",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/CSK/logos/Roundbig/CSKroundbig.png",
+    "Winning_year":" 2010, 2011, 2018, 2021",
+    "Stadium":"M.A Chidambaram Stadium",
+    "bgColor":"bg-gradient-to-t from-green-800 to-violet-500"
   },
   {
     "Team_Id": "4",
     "Team_Name": "Kings XI Punjab",
-    "Team_Short_Code": "KXIP"
+    "Team_Short_Code": "KXIP",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/PBKS/Logos/Roundbig/PBKSroundbig.png  ",
+    "Winning_year":false,
+    "Stadium":"Bindra Stadium"
   },
+
   {
     "Team_Id": "5",
-    "Team_Name": "Rajasthan Royals",
-    "Team_Short_Code": "RR"
+    "Team_Name": "Delhi Daredevils",
+    "Team_Short_Code": "DD",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/DC/Logos/Roundbig/DCroundbig.png",
+    "Winning_year":"2008",
+    "Stadium":"Arun Jaitely Stadium"
   },
   {
     "Team_Id": "6",
-    "Team_Name": "Delhi Daredevils",
-    "Team_Short_Code": "DD"
+    "Team_Name": "Mumbai Indians",
+    "Team_Short_Code": "MI",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/MI/Logos/Roundbig/MIroundbig.png",
+    "Winning_year":"2013, 2015, 2017, 2019, 2020",
+    "Stadium":"Wankhede Stadium"
   },
   {
     "Team_Id": "7",
-    "Team_Name": "Mumbai Indians",
-    "Team_Short_Code": "MI"
+    "Team_Name": "Dilhi Capitals",
+    "Team_Short_Code": "DC",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/DC/Logos/Roundbig/DCroundbig.png",
+    "Winning_year":"2013, 2015, 2017, 2019, 2020",
+    "Stadium":"Wankhede Stadium"
   },
+
   {
     "Team_Id": "8",
-    "Team_Name": "Deccan Chargers",
-    "Team_Short_Code": "DC"
-  },
-  {
-    "Team_Id": "9",
-    "Team_Name": "Kochi Tuskers Kerala",
-    "Team_Short_Code": "KTK"
-  },
-  {
-    "Team_Id": "10",
-    "Team_Name": "Pune Warriors",
-    "Team_Short_Code": "PW"
-  },
-  {
-    "Team_Id": "11",
     "Team_Name": "Sunrisers Hyderabad",
-    "Team_Short_Code": "SRH"
-  },
-  {
-    "Team_Id": "12",
-    "Team_Name": "Rising Pune Supergiants",
-    "Team_Short_Code": "RPS"
-  },
-  {
-    "Team_Id": "13",
-    "Team_Name": "Gujarat Lions",
-    "Team_Short_Code": "GL"
+    "Team_Short_Code": "SRH",
+    "Team_logo":"https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/SRH/Logos/Roundbig/SRHroundbig.png",
+    "Winning_year":"2016",
+    "Stadium":"Rajiv Gandhi Stadium"
   }
 ]

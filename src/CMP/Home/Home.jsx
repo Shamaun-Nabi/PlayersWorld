@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import auth from "../../Firebase/Firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 export default function Home() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   return (
     <>
       {/* SLIDER AREA */}
@@ -30,7 +30,8 @@ export default function Home() {
                 <p className="text-slate-400 mt-4">
                   {user ? (
                     <span className="text-green-500 text-xl font-semibold">
-                     <span className="text-teal-500">Welcome</span> Mr.{user?.displayName}
+                      <span className="text-teal-500">Welcome </span>
+                     <span className=""> {user?.displayName}</span>
                     </span>
                   ) : (
                     <span className=" animate-pulse text-red-500">
