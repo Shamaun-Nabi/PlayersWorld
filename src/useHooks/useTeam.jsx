@@ -8,7 +8,7 @@ export default function useTeam() {
       .then((result) => result.json())
       .then((data) => setTeams(data));
   }, []);
-  console.log(teams);
+  // console.log(teams);
 
   return [teams];
 }

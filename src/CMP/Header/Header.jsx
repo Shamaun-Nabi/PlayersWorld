@@ -188,7 +188,7 @@ export default function Header() {
                       <img
                         className="h-8 w-8 rounded-full"
                         src={user ? user?.photoURL : ""}
-                        alt="userPhoto"
+                        alt="notFound"
                       />
                     </button>
                   </div>

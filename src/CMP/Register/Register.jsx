@@ -1,7 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { sendEmailVerification } from "firebase/auth";
+import React, { useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../Firebase/Firebase.init";
 
 export default function Register() {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, {
+      sendEmailVerification: true,
+    });
+  const [updateProfile, updating, updateProfileError] = useUpdateProfile(auth);
+
+  const [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
+
+
+
+  if (loading) {
+    return <>Loading..</>;
+  }
+  if (updating) {
+    return <>Updating..</>;
+  }
+
+  const getFormInput = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    userInfo[name] = value;
+  };
+  const registerUser = async (event) => {
+    event.preventDefault();
+    if (userInfo.userName.length < 3) {
+      return toast.error("At least 3 character");
+    }
+    if (userInfo.password.length < 6) {
+      return toast.error("Password must be 6 or Upper");
+    }
+    if (userInfo.password !== userInfo.confrimPassword) {
+      return toast.error("Password mismatch");
+    } else {
+      await createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+      console.log(userInfo.userName);
+      await updateProfile({ displayName: userInfo.userName });
+      toast.success("Registration Successfull");
+      navigate("/");
+
+      // navigate("/");
+    }
+    console.log(user);
+  };
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ">
@@ -16,15 +68,16 @@ export default function Register() {
               Create A New Account
             </h2>
           </div>
-          <form className="mt-8 space-y-6">
+          <form className="mt-8 space-y-6" onSubmit={registerUser}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email-address" className="sr-only">
+                <label htmlFor="name" className="sr-only">
                   Your Name
                 </label>
                 <input
-                  id="email-address"
+                  onBlur={getFormInput}
+                  id="name"
                   name="userName"
                   type="text"
                   autoComplete="userName"
@@ -38,7 +91,8 @@ export default function Register() {
                   Email address
                 </label>
                 <input
-                  id="email-address"
+                  onBlur={getFormInput}
+                  id="email_address"
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -52,6 +106,7 @@ export default function Register() {
                   Password
                 </label>
                 <input
+                  onBlur={getFormInput}
                   id="password"
                   name="password"
                   type="password"
@@ -66,8 +121,9 @@ export default function Register() {
                   Confirm Password
                 </label>
                 <input
-                  id="password"
-                  name="password"
+                  onBlur={getFormInput}
+                  id="confirm-password"
+                  name="confrimPassword"
                   type="password"
                   autoComplete="current-password"
                   required

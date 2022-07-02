@@ -29,9 +29,9 @@ export default function Home() {
                 </Zoom>
                 <p className="text-slate-400 mt-4">
                   {user ? (
-                    <span className="text-green-500 text-xl font-semibold">
-                      <span className="text-teal-500">Welcome </span>
-                     <span className=""> {user?.displayName}</span>
+                    <span className=" text-xl font-semibold">
+                      <span className="text-green-400">Welcome,  </span>
+                      <span className="text-white font-mono"> {user?.displayName}</span>
                     </span>
                   ) : (
                     <span className=" animate-pulse text-red-500">
