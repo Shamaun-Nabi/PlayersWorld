@@ -187,7 +187,7 @@ export default function Header() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={user ? user?.photoURL : ""}
+                        src={user?.photoURL}
                         alt="notFound"
                       />
                     </button>

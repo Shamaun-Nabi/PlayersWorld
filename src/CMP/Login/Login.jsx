@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
-import { useAuthState, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from "react";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../Firebase/Firebase.init";
 
 export default function Login() {
+  const [signInWithEmailAndPassword, loginuser, loginloading, loginerror] =
+    useSignInWithEmailAndPassword(auth);
   const [user] = useAuthState(auth);
+  const [getLoginInfo, setLoginInfo] = useState({});
+
   // console.log(user);
   let navigate = useNavigate();
   let location = useLocation();
@@ -20,6 +28,24 @@ export default function Login() {
       toast.success("Login SuccessFull");
     }
   }, [user]);
+
+  if (loginloading) {
+    return <>Loading..</>;
+  }
+
+  const loginUser = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(getLoginInfo.email, getLoginInfo.userPassword);
+    navigate("/");
+    toast.success("Login SuccessFull");
+  };
+
+  const signInForm = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    getLoginInfo[name] = value;
+    // console.log(newInfo);
+  };
 
   const googleHandeler = () => {
     signInWithGoogle();
@@ -39,7 +65,7 @@ export default function Login() {
               Login to your account
             </h2>
           </div>
-          <form className="mt-8 space-y-6">
+          <form className="mt-8 space-y-6" onSubmit={loginUser}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -47,6 +73,7 @@ export default function Login() {
                   Email address
                 </label>
                 <input
+                  onBlur={signInForm}
                   id="email-address"
                   name="email"
                   type="email"
@@ -61,8 +88,9 @@ export default function Login() {
                   Password
                 </label>
                 <input
+                  onBlur={signInForm}
                   id="password"
-                  name="password"
+                  name="userPassword"
                   type="password"
                   autoComplete="current-password"
                   required
